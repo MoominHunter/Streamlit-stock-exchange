@@ -1,7 +1,6 @@
 # 스마트 트레이딩: AI 주식 분석 및 예측
 
 
-### 📘 프로젝트 README.md
 ## 📝 프로젝트 소개
 이 프로젝트는 Streamlit을 활용하여 주식 데이터 조회, 거래, 시각화, 그리고 AI 기반 종목 분석 기능을 제공하는 스마트 트레이딩 시스템 웹 애플리케이션입니다.
 
@@ -10,8 +9,7 @@
 본 프로젝트는 4명의 조원이 협력하여 제작하였습니다.
 
 ## Streamlit URL
-https://app-stock-exchange-cy2ypprgtcjtzw26b7mjts.streamlit.app/
-
+[Streamlit URL](https://smart-treding-stock.streamlit.app/)
 ## 📂 주요 기능
 ### 1️⃣ 마이페이지
 설명: 사용자의 금융 데이터를 종합적으로 관리하고 시각화하는 기능을 제공합니다.
