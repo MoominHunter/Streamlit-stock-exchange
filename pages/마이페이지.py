@@ -11,17 +11,6 @@ from matplotlib import rc
 plt.rcParams['font.family'] = 'Malgun Gothic'
 
 
-# Streamlit 상태 초기화
-if "user" not in st.session_state:
-    st.session_state.user = {
-        "name": "홍길동",
-        "cash": 500000,
-        "stocks": [
-            {"name": "AAPL", "quantity": 10, "purchase_price": 150, "current_price": 170},
-            {"name": "GOOG", "quantity": 5, "purchase_price": 2800, "current_price": 2900},
-        ],
-    }
-
 @st.cache_data
 def get_historical_prices(stock_name, start_date, end_date):
     """종목의 과거 가격 가져오기"""
@@ -32,31 +21,31 @@ def get_historical_prices(stock_name, start_date, end_date):
 
 # UI
 st.title("마이페이지")
-user = st.session_state.user
+user = st.session_state.user1
 
 # 현재 자산 계산
-total_stock_value = sum(stock["current_price"] * stock["quantity"] for stock in user["stocks"])
-total_asset = user["cash"] + total_stock_value
+total_stock_value = sum(stock.purchase_price * stock.count for stock in user.stocks)
+total_asset = user.money + total_stock_value
 
 # 사용자 정보 표시
 st.subheader("현재 자산 상황")
-st.write(f"👤 이름: {user['name']}")
+st.write(f"👤 이름: {user.name}")
 st.write(f"💼 총 자산: {total_asset:,}원")
-st.write(f"💰 현금 자산: {user['cash']:,}원")
+st.write(f"💰 현금 자산: {user.money:,}원")
 
 # 보유 주식 요약
 st.subheader("보유 종목 요약")
-if user["stocks"]:
-    stock_df = pd.DataFrame(user["stocks"])
-    stock_df["자산 가치"] = stock_df["current_price"] * stock_df["quantity"]
-    st.dataframe(stock_df[["name", "quantity", "purchase_price", "current_price", "자산 가치"]], use_container_width=True)
+if user.stocks:
+    stock_df = pd.DataFrame(user.stocks)
+    stock_df["자산 가치"] = stock_df["purchase_price"] * stock_df["count"]
+    st.dataframe(stock_df[["name", "count", "purchase_price", "자산 가치"]], use_container_width=True)
 else:
     st.write("보유 종목이 없습니다.")
 
 # 종목 비중
 st.subheader("종목 비중")
-portfolio = {stock["name"]: stock["current_price"] * stock["quantity"] for stock in user["stocks"]}
-portfolio["현금"] = user["cash"]
+portfolio = {stock["name"]: stock["purchase_price"] * stock["count"] for stock in user.stocks}
+portfolio["현금"] = user.money
 
 # Plotly Pie Chart
 fig1 = px.pie(
@@ -81,19 +70,19 @@ start_date = st.date_input("시작 날짜", value=date.today() - timedelta(days=
 end_date = st.date_input("종료 날짜", value=date.today())
 
 historical_df = pd.DataFrame()
-for stock in user["stocks"]:
-    df = get_historical_prices(stock["name"], start_date, end_date)
+for stock in user.stocks:
+    df = get_historical_prices(stock.name, start_date, end_date)
     if not df.empty:
-        df["name"] = stock["name"]
-        df["quantity"] = stock["quantity"]
-        df["value"] = df["Close"] * stock["quantity"]
+        df["name"] = stock.name
+        df["quantity"] = stock.count
+        df["value"] = df["Close"] * stock.count
         historical_df = pd.concat([historical_df, df])
 
 if not historical_df.empty:
     historical_df.reset_index(inplace=True)
     historical_df.rename(columns={"index": "날짜"}, inplace=True)
     total_historical = historical_df.groupby("날짜")["value"].sum().reset_index()
-    total_historical["total_asset"] = total_historical["value"] + user["cash"]
+    total_historical["total_asset"] = total_historical["value"] + user.money
 
     # 데이터 요약
     max_asset = total_historical["total_asset"].max()
