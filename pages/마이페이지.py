@@ -152,4 +152,4 @@ if st.session_state.user1:
     else:
         st.write("누적 자산 변동 데이터를 가져올 수 없습니다.")
 else:
-    st.error("로그인을 하세요!")
+    st.error("로그인 하세요.")
