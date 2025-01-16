@@ -121,7 +121,7 @@ if stock_name and date_range[0] and date_range[1]:
                                  name='예측 종가',
                                  line=dict(color='red', dash='dot')))
 
-    fig.update_layout(title=f'{stock_name} Stock Price',
+    fig.update_layout(title=f'{stock_name} 주가 데이터',
                       xaxis_title='Date',
                       yaxis_title='Price (KRW)',
                       template='plotly_dark')

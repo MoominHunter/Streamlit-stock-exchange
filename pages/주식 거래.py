@@ -147,7 +147,7 @@ if st.session_state.user1:
                                             name='예측 종가',
                                             line=dict(color='red', dash='dot')))
                 
-                fig.update_layout(title=f'매도 날짜 {selected_stock} 주가 예측값',
+                fig.update_layout(title=f'{selected_stock} 주가 데이터 및 예측가',
                         xaxis_title='Date',
                         yaxis_title='Price (KRW)',
                         template='plotly_dark')
@@ -232,7 +232,7 @@ if st.session_state.user1:
                                                 name='예측 종가',
                                                 line=dict(color='red', dash='dot')))
                     
-                    fig.update_layout(title=f'매도 날짜 {selected_stock} 주가 예측값',
+                    fig.update_layout(title=f'{selected_stock} 주가 데이터 및 예측가',
                             xaxis_title='Date',
                             yaxis_title='Price (KRW)',
                             template='plotly_dark')
