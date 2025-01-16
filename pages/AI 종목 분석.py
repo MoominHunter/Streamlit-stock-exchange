@@ -11,6 +11,11 @@ import datetime
 st.title("AI 종목 분석📈")
 st.markdown("#### 분석을 원하는 종목을 AI에게 물어보세요✨")
 
+# 주의점 popover 추가
+with st.popover(label="ℹ️주의사항", use_container_width=True):
+    st.markdown("**모든 투자의 책임은 전적으로 투자자 본인에게 있습니다.**")
+
+
 # ✅ OpenAI API 키 입력
 openai_api_key = st.text_input("🔑 OpenAI API Key를 입력하세요:", type="password")
 
