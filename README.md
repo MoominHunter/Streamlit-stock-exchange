@@ -24,6 +24,15 @@
 매도 날짜 입력 및 LSTM 기반 주가 예측
 과거 데이터와 예측 데이터를 비교한 캔들 차트 및 예측 종가 라인 그래프 제공
 
+- LSTM 모델 구조
+  ![image](https://github.com/user-attachments/assets/06dc0d09-6328-4237-8f11-bebbdd8e5561)
+
+- 학습 데이터
+  2015년 부터 삼성전자 종가 데이터
+  ![image](https://github.com/user-attachments/assets/311d8bbb-b917-47cf-9f9e-b373aedd88a9)
+
+
+
 ### 3️⃣ 차트 검색 페이지
 설명: 원하는 종목의 과거 주가 데이터를 시각화하고, LSTM 딥러닝 모델을 활용하여 미래 주가를 예측합니다.
 주요 기능:
