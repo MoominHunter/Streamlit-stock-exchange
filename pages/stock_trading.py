@@ -9,6 +9,8 @@ import requests
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
+st.title("주식 거래")
+
 # LSTM 모델 로드
 model = tf.keras.models.load_model('./model/keras_model_삼성전자.h5')
 

@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 from matplotlib import rc
 
 # 그래프 폰트
+st.title("My Page")
+
 plt.rcParams['font.family'] = 'Malgun Gothic'
 
 

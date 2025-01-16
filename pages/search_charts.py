@@ -7,6 +7,8 @@ import numpy as np
 import tensorflow as tf
 from sklearn.preprocessing import MinMaxScaler
 
+st.title("차트 검색")
+
 # LSTM 모델 로드
 model = tf.keras.models.load_model('./model/keras_model_삼성전자.h5')
 
