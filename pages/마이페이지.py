@@ -58,10 +58,22 @@ st.subheader("종목 비중")
 portfolio = {stock["name"]: stock["current_price"] * stock["quantity"] for stock in user["stocks"]}
 portfolio["현금"] = user["cash"]
 
-fig1, ax1 = plt.subplots()
-ax1.pie(portfolio.values(), labels=portfolio.keys(), autopct="%1.1f%%", startangle=90)
-ax1.axis("equal")
-st.pyplot(fig1)
+# Plotly Pie Chart
+fig1 = px.pie(
+    names=portfolio.keys(),
+    values=portfolio.values(),
+    title="포트폴리오 비중",
+    hole=0.3,  # 도넛 차트 스타일
+)
+
+fig1.update_traces(textinfo="percent+label")  # 퍼센트와 라벨 표시
+fig1.update_layout(
+    showlegend=True,
+    legend_title="항목",
+    template="plotly_white"
+)
+
+st.plotly_chart(fig1, use_container_width=True)
 
 # 누적 자산 변동
 st.subheader("누적 자산 변동")
