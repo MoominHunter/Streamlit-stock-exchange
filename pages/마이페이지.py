@@ -36,7 +36,14 @@ st.write(f"💰 현금 자산: {user.money:,}원")
 # 보유 주식 요약
 st.subheader("보유 종목 요약")
 if user.stocks:
-    stock_df = pd.DataFrame(user.stocks)
+    # stocks 리스트를 DataFrame으로 변환
+    stock_data = [
+        {"name": stock.name, "purchase_price": stock.purchase_price, "count": stock.count}
+        for stock in user.stocks
+    ]
+    stock_df = pd.DataFrame(stock_data)
+    
+    # 자산 가치 계산 열 추가
     stock_df["자산 가치"] = stock_df["purchase_price"] * stock_df["count"]
     st.dataframe(stock_df[["name", "count", "purchase_price", "자산 가치"]], use_container_width=True)
 else:
@@ -44,7 +51,7 @@ else:
 
 # 종목 비중
 st.subheader("종목 비중")
-portfolio = {stock["name"]: stock["purchase_price"] * stock["count"] for stock in user.stocks}
+portfolio = {stock.name: stock.purchase_price* stock.count for stock in user.stocks}
 portfolio["현금"] = user.money
 
 # Plotly Pie Chart
