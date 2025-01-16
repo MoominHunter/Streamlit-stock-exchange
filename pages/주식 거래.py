@@ -167,7 +167,8 @@ if st.session_state.user1:
             # 매도 화면
             st.subheader("📉 주식 매도")
             if stock_price:
-                st.info(f"{selected_stock} ({selected_code})의 현재 주가: {stock_price:,}원")
+                
+                st.info(f"{selected_stock} ({selected_code})의 현재 주가: {int(future_df['Close'][-1]):,}원")
                 sell_count = st.number_input("매도 수량", min_value=1, step=1, key="sell_count")
                 sell_date = st.date_input("매도 날짜 선택", value=datetime.date.today() + datetime.timedelta(days=1) , min_value= datetime.date.today() + datetime.timedelta(days=1),  key="sell_date")
 
@@ -240,7 +241,7 @@ if st.session_state.user1:
                     st.plotly_chart(fig, use_container_width=True)
 
                 if st.button("주식 판매"):
-                    result = user.sell_stock(selected_stock, stock_price, sell_count)
+                    result = user.sell_stock(selected_stock, int(future_df['Close'][-1]), sell_count)
                     if "보유하고 있지 않습니다" in result or "없습니다" in result:
                         st.error(result)  # 매도 실패 메시지
                     else:
