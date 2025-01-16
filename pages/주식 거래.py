@@ -251,4 +251,4 @@ if st.session_state.user1:
     else:
         st.write("검색 결과가 없습니다.")
 else:
-    st.warning("로그인부터 하세요!")
+    st.warning("로그인 하세요.")
