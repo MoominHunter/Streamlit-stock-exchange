@@ -107,8 +107,6 @@ def get_stock_news():
 if __name__ == "__main__":
     try:
         news = get_stock_news()
-        for idx, article in enumerate(news, start=1):
-            print(f"{idx}. {article['title']}\n   Link: {article['link']}\n")
     except Exception as e:
         print(f"Error: {e}")
     
