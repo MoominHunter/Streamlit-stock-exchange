@@ -39,14 +39,14 @@ if st.session_state.user1:
     if user.stocks:
         # stocks 리스트를 DataFrame으로 변환
         stock_data = [
-            {"name": stock.name, "purchase_price": stock.purchase_price, "count": stock.count}
+            {"종목": stock.name, "구매가": stock.purchase_price, "구매 수": stock.count}
             for stock in user.stocks
         ]
         stock_df = pd.DataFrame(stock_data)
         
         # 자산 가치 계산 열 추가
-        stock_df["자산 가치"] = stock_df["purchase_price"] * stock_df["count"]
-        st.dataframe(stock_df[["name", "count", "purchase_price", "자산 가치"]], use_container_width=True)
+        stock_df["자산 가치"] = stock_df["구매 수"] * stock_df["구매가"]
+        st.dataframe(stock_df[["종목", "구매가", "구매 수", "자산 가치"]], use_container_width=True, hide_index= True)
     else:
         st.write("보유 종목이 없습니다.")
 
