@@ -48,7 +48,8 @@ OpenAI GPT 모델을 활용한 AI 분석 리포트 생성 (추천 여부 포함)
 누적 자산 변동 그래프: 기간별 누적 자산의 변동 추세를 시각화.
 
 ### 주식 거래 페이지
-![Uploading 거래.gif…]()
+![거래](https://github.com/user-attachments/assets/af602a6b-93f6-4241-acbf-40e4e5129e21)
+
 
 - 주식 매수:
 검색한 종목의 일주일 주가 예측값과 한 달간의 주가 데이터를 차트로 제공.
