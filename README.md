@@ -25,11 +25,14 @@
 과거 데이터와 예측 데이터를 비교한 캔들 차트 및 예측 종가 라인 그래프 제공
 
 - LSTM 모델 구조
-  ![image](https://github.com/user-attachments/assets/06dc0d09-6328-4237-8f11-bebbdd8e5561)
+![1](https://github.com/user-attachments/assets/2e82ffa0-dbcc-4230-980a-625f168b6c07)
+
+
 
 - 학습 데이터
   2015년 부터 삼성전자 종가 데이터
-  ![image](https://github.com/user-attachments/assets/311d8bbb-b917-47cf-9f9e-b373aedd88a9)
+![2](https://github.com/user-attachments/assets/8cd21923-a98d-4221-b232-d058e520c051)
+
 
 
 
