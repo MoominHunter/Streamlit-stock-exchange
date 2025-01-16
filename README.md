@@ -8,8 +8,6 @@
 
 본 프로젝트는 4명의 조원이 협력하여 제작하였습니다.
 
-## Streamlit URL
-[Streamlit URL](https://smart-treding-stock.streamlit.app/)
 ## 📂 주요 기능
 ### 1️⃣ 마이페이지
 설명: 사용자의 금융 데이터를 종합적으로 관리하고 시각화하는 기능을 제공합니다.
@@ -140,7 +138,9 @@ BeautifulSoup (네이버 뉴스 크롤링)
   
   ✅ 고급 환경설정을 통해 Python 3.11 버전으로 변경하여 배포하였다.
   
-    
+## Streamlit URL
+[Streamlit URL](https://smart-treding-stock.streamlit.app/)
+
 ## 📌 참고 자료
 [Streamlit 공식 문서](https://docs.streamlit.io/)
 [FinanceDataReader GitHub](https://github.com/FinanceData/FinanceDataReader)
