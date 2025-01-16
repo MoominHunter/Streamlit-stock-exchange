@@ -28,6 +28,7 @@ if st.session_state.user1:
     total_stock_value = sum(stock.purchase_price * stock.count for stock in user.stocks)
     total_asset = user.money + total_stock_value
     proceeds = total_asset - user.seed_money
+    roi = (proceeds / user.seed_money) * 100 
 
     # 사용자 정보 표시
     st.subheader("현재 자산 상황")
@@ -35,6 +36,11 @@ if st.session_state.user1:
     st.write(f"💼 총 자산: {total_asset:,}원")
     st.write(f"🤑 수익금: {proceeds:,}원")
     st.write(f"💰 현금 자산: {user.money:,}원")
+    st.metric(
+        label="💸 총 투자 수익률",
+        value=f"{roi:.2f}%",
+    )
+    
 
     # 보유 주식 요약
     st.subheader("보유 종목 요약")
