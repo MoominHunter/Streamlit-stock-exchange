@@ -158,8 +158,7 @@ BeautifulSoup (네이버 뉴스 크롤링)
   
 
 ## Streamlit URL
-https://app-stock-exchange-cy2ypprgtcjtzw26b7mjts.streamlit.app/
-
+[Streamlit URL](https://smart-treding-stock.streamlit.app/)
 
 ## 📌 참고 자료
 [Streamlit 공식 문서](https://docs.streamlit.io/)
