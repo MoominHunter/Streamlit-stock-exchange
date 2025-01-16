@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import FinanceDataReader as fdr
 import openai
 import plotly.graph_objects as go
+import os
 
 # Streamlit 페이지 제목
 st.title("AI 종목 분석📈")
@@ -66,7 +67,9 @@ if prompt:
         return articles
 
     #과금에 필요한 API키 지정
-    client = openai.OpenAI(api_key = "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")
+    openai_api_key = os.getenv("OPENAI_API_KEY")
+
+    client = openai.OpenAI(api_key = openai_api_key)
 
     def get_analysis_report(ticker):
         """
