@@ -94,6 +94,23 @@ if stock_name and date_range[0] and date_range[1]:
         df = fdr.DataReader(f'KRX:{ticker_symbol}', start_p, end_p)
         future_df = pd.DataFrame()
 
+    ## 표 이름 한글로 수정
+    df.rename(columns={
+        'Date': '날짜',
+        'Close': '종가',
+        'Open': '시가',
+        'High': '고가',
+        'Low' : '저가',
+        'Volume': '거래량',
+        'Change': '변동률',
+        'UpDown': '상승/하락',
+        'Comp': '비교',
+        'Amount': '금액',
+        'MarCap': '시가총액',
+        'Shares': '발행주식수'
+    }, inplace=True)
+
+    # 변경된 데이터 출력
     st.subheader(f"{stock_name} 주가 데이터")
     st.dataframe(df)
 
@@ -101,17 +118,17 @@ if stock_name and date_range[0] and date_range[1]:
     fig = go.Figure()
 
     ## 종가(Close) 라인 차트 추가
-    fig.add_trace(go.Scatter(x=df.index, y=df['Close'],
+    fig.add_trace(go.Scatter(x=df.index, y=df['종가'],
                          mode='lines',
                          name='종가'))
 
     # 캔들 차트 추가
-    if 'Open' in df.columns:
+    if '시가' in df.columns:
         fig.add_trace(go.Candlestick(x=df.index,
-                                 open=df['Open'],
-                                 high=df['High'],
-                                 low=df['Low'],
-                                 close=df['Close'],
+                                 open=df['시가'],
+                                 high=df['고가'],
+                                 low=df['저가'],
+                                 close=df['종가'],
                                  name='켄들 스틱'))
 
     # 예측 주가 라인 (빨간색)
