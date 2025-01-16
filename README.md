@@ -1,4 +1,4 @@
-# Fisa-streamlit-mini-proj
+# 투자마스터: AI 주식 분석 및 예측
 
 
 ### 📘 프로젝트 README.md
