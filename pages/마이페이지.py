@@ -27,11 +27,13 @@ if st.session_state.user1:
     # 현재 자산 계산
     total_stock_value = sum(stock.purchase_price * stock.count for stock in user.stocks)
     total_asset = user.money + total_stock_value
+    proceeds = total_asset - user.seed_money
 
     # 사용자 정보 표시
     st.subheader("현재 자산 상황")
     st.write(f"👤 이름: {user.name}")
     st.write(f"💼 총 자산: {total_asset:,}원")
+    st.write(f"🤑 수익금: {proceeds:,}원")
     st.write(f"💰 현금 자산: {user.money:,}원")
 
     # 보유 주식 요약
@@ -39,14 +41,14 @@ if st.session_state.user1:
     if user.stocks:
         # stocks 리스트를 DataFrame으로 변환
         stock_data = [
-            {"종목": stock.name, "구매가": stock.purchase_price, "구매 수": stock.count}
+            {"종목": stock.name, "구매가": stock.purchase_price, "보유 개수": stock.count}
             for stock in user.stocks
         ]
         stock_df = pd.DataFrame(stock_data)
         
         # 자산 가치 계산 열 추가
-        stock_df["자산 가치"] = stock_df["구매 수"] * stock_df["구매가"]
-        st.dataframe(stock_df[["종목", "구매가", "구매 수", "자산 가치"]], use_container_width=True, hide_index= True)
+        stock_df["자산 가치"] = stock_df["보유 개수"] * stock_df["구매가"]
+        st.dataframe(stock_df[["종목", "구매가", "보유 개수", "자산 가치"]], use_container_width=True, hide_index= True)
     else:
         st.write("보유 종목이 없습니다.")
 

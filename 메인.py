@@ -24,6 +24,7 @@ class Stock:
 class User:
     def __init__(self, name, money):
         self.name = name
+        self.seed_money = money
         self.money = money
         self.stocks = []
 
