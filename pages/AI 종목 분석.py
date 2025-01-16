@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import FinanceDataReader as fdr
 import openai
 import plotly.graph_objects as go
+from dotenv import load_dotenv
 import os
 
 # Streamlit 페이지 제목
@@ -67,6 +68,7 @@ if prompt:
         return articles
 
     #과금에 필요한 API키 지정
+    load_dotenv()
     openai_api_key = os.getenv("OPENAI_API_KEY")
 
     client = openai.OpenAI(api_key = openai_api_key)
