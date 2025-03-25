@@ -3,9 +3,12 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 import FinanceDataReader as fdr
+import os
+from openai import OpenAI
 import openai
 import plotly.graph_objects as go
 import datetime
+from dotenv import load_dotenv
 
 # Streamlit 페이지 제목
 st.title("AI 종목 분석📈")
@@ -15,17 +18,22 @@ st.markdown("#### 분석을 원하는 종목을 AI에게 물어보세요✨")
 with st.popover(label="ℹ️주의사항", use_container_width=True):
     st.markdown("**모든 투자의 책임은 전적으로 투자자 본인에게 있습니다.**")
 
+load_dotenv()
 
-# ✅ OpenAI API 키 입력
-openai_api_key = st.text_input("🔑 OpenAI API Key를 입력하세요:", type="password")
+openai_api_key = os.getenv('OPENAI_API_KEY')
+if not openai_api_key:
+    print("OpenAI API 키가 로드되지 않았습니다.")
+else:
+    print("OpenAI API 키 로드 성공!")
+
+client = OpenAI(api_key=openai_api_key)
 
 # 사용자 입력 (종목명)
 prompt = st.chat_input("종목 입력")
 
 if openai_api_key and prompt:
     try:
-        # OpenAI 클라이언트 초기화
-        client = openai.OpenAI(api_key=openai_api_key)
+        
 
         stock_name = prompt  # 채팅 입력을 종목명으로 사용
 
@@ -73,7 +81,7 @@ if openai_api_key and prompt:
             AI가 종목 분석 리포트를 생성함
             """
             response = client.chat.completions.create(
-                model="gpt-4o",
+                model="gpt-4o-mini",
                 messages=[
                     {"role": "system", "content": "너는 주식 데이터 분석 전문가야."},
                     {"role": "user", "content": f"{ticker} 종목의 최근 뉴스 및 데이터를 기반으로. \
@@ -121,7 +129,7 @@ if openai_api_key and prompt:
                 st.write(f"- [{article['title']}]({article['link']})")
         else:
             st.write("관련 뉴스를 가져올 수 없습니다.")
-
+    
     except Exception as e:
         st.error(f"⚠️ 오류가 발생했습니다: {e}")
 else:
